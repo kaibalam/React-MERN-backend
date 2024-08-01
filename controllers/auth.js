@@ -57,7 +57,6 @@ const loginUsuario = async (req, res = response) => {
         }
 
         // Confirmar los passwords
-        console.log(password);
         const validPassword = bcrypt.compareSync(password, usuario.password);
 
         if (!validPassword) {
@@ -69,7 +68,8 @@ const loginUsuario = async (req, res = response) => {
 
         // Generar nuestro JWT
         const token = await generarJWT( usuario.id, usuario.name );
-
+        
+        console.log(usuario);
         res.json({
             ok: true,
             uid: usuario.id,
